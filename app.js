@@ -2,7 +2,7 @@
 
 // recive input value and calculated back pad price
 
-function getInputValue(product, isTrue, price) {
+function getInputValueCalculated(product, isTrue, price) {
     const productInput = document.getElementById(product + '-number');
     let productNumber = productInput.value;
     const priceInput = document.getElementById('case-total');
@@ -20,14 +20,34 @@ function getInputValue(product, isTrue, price) {
 
     const productTotal = document.getElementById(product + '-total');
     productTotal.innerText = productNumber * price;
+    calculatedTotal();
 
+
+}
+
+function getInputValue(product) {
+    const productInput = document.getElementById(product + '-number');
+    const prouductNumber = parseInt(productInput.value);
+    return prouductNumber;
+}
+
+function calculatedTotal() {
+    const phoneTotal = getInputValue('phone') * 1219;
+    const caseTotal = getInputValue('case') * 59;
+    const subTotal = phoneTotal + caseTotal;
+    const tax = subTotal / 10;
+    const totalPrice = subTotal + tax;
+
+    document.getElementById('sub-total').innerText = subTotal;
+    document.getElementById('tax-amount').innerText = tax;
+    document.getElementsByTagName('total-price').innerText = totalPrice;
 
 }
 
 // handle phone price
 
 document.getElementById('phone-plus').addEventListener('click', function () {
-    getInputValue('phone', true, 1219);
+    getInputValueCalculated('phone', true, 1219);
     // const phoneInput = document.getElementById('phone-number');
     // const phoneNumber = parseInt(phoneInput.value);
     // console.log(phoneNumber);
@@ -37,16 +57,16 @@ document.getElementById('phone-plus').addEventListener('click', function () {
 
 
 document.getElementById('phone-minus').addEventListener('click', function () {
-    getInputValue('phone', false, 1219);
+    getInputValueCalculated('phone', false, 1219);
 });
 
 
 // handle phone phone back pad
 document.getElementById('case-plus').addEventListener('click', function () {
-    getInputValue('case', true, 59)
+    getInputValueCalculated('case', true, 59)
 })
 
 document.getElementById('case-minus').addEventListener('click', function () {
-    getInputValue('case', false, 59);
+    getInputValueCalculated('case', false, 59);
 })
 
