@@ -2,25 +2,29 @@
 
 // recive input value and calculated price
 
-function getInputValue(product, isTrue) {
+function getInputValue(product, isTrue, price) {
     const productInput = document.getElementById(product + '-number');
-    const productNumber = parseInt(productInput.value);
-
-
+    let productNumber = productInput.value;
+    const priceInput = document.getElementById('case-total');
+    const priceTotal = parseInt(priceInput.innerText);
     if (isTrue) {
-        productInput.value = productNumber + 1;
+        productNumber = parseInt(productNumber) + 1;
     } else if (productNumber > 0) {
-        productInput.value = productNumber - 1;
+        productNumber = parseInt(productNumber) - 1;
     }
+    // assingn the value of productInput
+    productInput.value = productNumber;
+    // assingn the value of totalPrice;
+    priceInput.innerText = productNumber * price;
 
 }
 
 
 
 document.getElementById('case-plus').addEventListener('click', function () {
-    getInputValue('case', true)
+    getInputValue('case', true, 59)
 })
 
 document.getElementById('case-minus').addEventListener('click', function () {
-    getInputValue('case', false);
+    getInputValue('case', false, 59);
 })
